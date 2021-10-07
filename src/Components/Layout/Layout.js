@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import LayoutNavbar from "../LayoutNavbar/LayoutNavbar";
 import LayoutSidebar from "../LayoutSidebar/LayoutSidebar";
 import LayoutBody from "../LayoutBody/LayoutBody";
-// import vitalsData from "../../Data/vitals.json";
 import masterJson from "../../Data/master.json";
 import { useSelector } from "react-redux";
 import "./Layout.scss";
@@ -10,6 +9,7 @@ import { showNotificationWithMessage } from "../../store/actions";
 const Layout = (props) => {
   const vitalsJsonTemplate = useSelector(state=>state.reducer.vitalsData);
   const [templateData, setTemplateData] = useState(null);
+  // json for sending to layout body
   const [currentSelectedJsonIndex, setCurrentSelectedJsonIndex] = useState(-1);
   const [currentJson, setCurrentJson] = useState({});
     
@@ -41,8 +41,14 @@ const Layout = (props) => {
     let tempTemplateData = [...templateData];
     tempTemplateData.splice(index,1);
     setTemplateData((prev) => [...tempTemplateData]);
-    
+    if(currentSelectedJsonIndex==index){
+      setCurrentJson({});
+      setCurrentSelectedJsonIndex(-1)
+    }
   }
+
+
+
   useEffect(() => {
     setCurrentSelectedJsonIndex(-1);
        setTemplateData(vitalsJsonTemplate);

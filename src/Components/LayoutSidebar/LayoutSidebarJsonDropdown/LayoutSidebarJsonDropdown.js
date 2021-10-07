@@ -5,16 +5,17 @@ import { useDispatch } from "react-redux";
 import {
   showNotificationWithMessage,
   setVitalsData,
-  setFileDetails
+  setFileDetails,
 } from "../../../store/actions";
 const LayoutSidebarJsonDropdown = (props) => {
   const dispatch = useDispatch();
-  const getFileContent = async (fileHandle) => {
-    const file = await fileHandle.getFile();
-    dispatch(setFileDetails(file));
+
+  const getFileContent = async (file) => {
     const contents = await file.text();
+
     try {
       let jsonContent = JSON.parse(contents);
+      dispatch(setFileDetails(file));
       dispatch(setVitalsData(jsonContent));
       dispatch(
         showNotificationWithMessage({
@@ -27,9 +28,10 @@ const LayoutSidebarJsonDropdown = (props) => {
         dispatch(
           showNotificationWithMessage({
             variant: "success",
-            message: "JSON File Chosen",
+            message: "Empty JSON File Chosen",
           })
         );
+        dispatch(setFileDetails(file));
         dispatch(setVitalsData([]));
       } else {
         dispatch(
@@ -41,42 +43,21 @@ const LayoutSidebarJsonDropdown = (props) => {
       }
     }
   };
+
+  // getFileContent is a function defined above
   const getFileAccess = async (getFileContent) => {
+    // fileHandle
     const [fileHandle] = await window.showOpenFilePicker();
     props.setFileHandler(fileHandle);
-    await getFileContent(fileHandle);
-    dispatch(
-      showNotificationWithMessage({
-        variant: "success",
-        message: "JSON File Picked!",
-      })
-    );
+    const file = await fileHandle.getFile();
+
+    await getFileContent(file);
   };
-  const onDrop = async (e) => {
+  const onDrop = async (e, getFileContent) => {
     e.preventDefault();
     e.stopPropagation();
     const file = e.dataTransfer.files[0];
-    const contents = await file.text();
-    try {
-      dispatch(setVitalsData(JSON.parse(contents)));
-      dispatch(
-        showNotificationWithMessage({
-          variant: "success",
-          message: "JSON File Chosen",
-        })
-      );
-    } catch (err) {
-      if (contents.length == 0) {
-        dispatch(setVitalsData(JSON.parse([])));
-      } else {
-        dispatch(
-          showNotificationWithMessage({
-            variant: "warning",
-            message: "Please choose Array of JSON",
-          })
-        );
-      }
-    }
+    await getFileContent(file);
   };
   return (
     <div className="layoutSidebarJsonDropdown__container">
@@ -90,7 +71,7 @@ const LayoutSidebarJsonDropdown = (props) => {
           e.preventDefault();
           e.stopPropagation();
         }}
-        onDrop={onDrop}
+        onDrop={(e) => onDrop(e, getFileContent)}
       >
         <img src={fileUploadIcon} className="layoutSidebarJson__image" />
       </div>

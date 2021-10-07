@@ -16,8 +16,9 @@ import {
 } from "./HighOrderFunctions/API/APIData";
 import NavigatorOnline from "react-navigator-online";
 import { useDispatch } from "react-redux";
-import { showNotificationWithMessage } from "./store/actions";
+import { showNotificationWithMessage,resetDetails } from "./store/actions";
 function App() {
+  const [showLayout,setShowLayout] = useState(false);
   const dispatch = useDispatch();
   const notificationState = useSelector((state) => state.reducer.notification);
   const { response: clinicalEntitiesData } = useFetch(
@@ -51,6 +52,8 @@ function App() {
   };
   useEffect(() => {
     showOnlineMessage(navigator.onLine);
+    dispatch(resetDetails())
+    setShowLayout(true);
   }, []);
   return (
     <div className="app__container">
@@ -59,13 +62,14 @@ function App() {
         <ToastNotification notification={notificationState} />
       )}
       <NavigatorOnline onChange={(status) => showOnlineMessage(status)} />
-      <Layout
+     {showLayout &&  <Layout
         clinicalEntitiesData={clinicalEntitiesData}
         vitalsData={vitalsData}
         symptomData={symptomData}
         typeOptionsData={typeOptions}
         measureTypeOptionsData={measureTypeOptions}
       />
+     }
     </div>
   );
 }

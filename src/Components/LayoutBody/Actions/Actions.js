@@ -86,7 +86,7 @@ const Actions = (props) => {
           key={uuidv4()}
           value={JSON.stringify(item)}
           index={index}
-          deleteUtterance={deleteAction}
+          deleteAction={deleteAction}
           updateAction={updateAction}
         />
       );

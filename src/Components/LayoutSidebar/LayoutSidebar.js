@@ -8,14 +8,14 @@ import AddBoxSharpIcon from "@mui/icons-material/AddBoxSharp";
 import SaveSharpIcon from "@mui/icons-material/SaveSharp";
 import PreviewPopup from "../UI/PreviewComponent/PreviewPopup";
 import { TextareaAutosize } from "@mui/material";
-import { useDispatch,useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   showNotificationWithMessage,
   setFileDetails,
-  setVitalsData
+  setVitalsData,
 } from "../../store/actions";
 const LayoutSidebar = (props) => {
-  const fileDetails = useSelector(state=>state.reducer.fileDetails);
+  const fileDetails = useSelector((state) => state.reducer.fileDetails);
   const dispatch = useDispatch();
   const [visibility, setVisibility] = useState(false);
   const [templateData, setTemplateData] = useState([]);
@@ -25,7 +25,7 @@ const LayoutSidebar = (props) => {
     props.addNewJsonObject();
     setAddNewFormClicked(true);
   };
-  const saveDataToLocal = async () => {
+  const saveDataToLocalFolder = async () => {
     try {
       const writable = await fileHandler?.createWritable();
       // Write the contents of the file to the stream.
@@ -47,10 +47,12 @@ const LayoutSidebar = (props) => {
       );
     }
   };
+
   const createNewFile = async () => {
+    // get New File Handle Function
     async function getNewFileHandle() {
       const options = {
-        suggestedName: 'Untitled Text.json',
+        suggestedName: "Untitled Text.json",
         types: [
           {
             description: "JSON Files",
@@ -63,11 +65,16 @@ const LayoutSidebar = (props) => {
       const handle = await window?.showSaveFilePicker(options);
       return handle;
     }
+
     const fileHandle = await getNewFileHandle();
+    // setting fileHandle to local state fileHandler defined above
     setFileHandler(fileHandle);
+
     const file = await fileHandle.getFile();
     console.log("FILE HANDLER: ", fileHandle.getFile());
     dispatch(setFileDetails(file));
+
+    // contents of  newly created file
     const contents = await file.text();
     try {
       let jsonContent = JSON.parse(contents);
@@ -91,12 +98,11 @@ const LayoutSidebar = (props) => {
         dispatch(
           showNotificationWithMessage({
             variant: "warning",
-            message: "Please choose Array of JSON",
+            message: "Please choose Empty Array of JSON",
           })
         );
       }
     }
-
   };
   useEffect(() => {
     if (props.templateData) {
@@ -132,13 +138,15 @@ const LayoutSidebar = (props) => {
         >
           Create New File
         </Button>
-        {fileDetails.name &&<Button
-          variant="contained"
-          startIcon={<AddBoxSharpIcon />}
-          onClick={addNewJsonToTemplate}
-        >
-          Add New Form
-        </Button>}
+        {fileDetails.name && (
+          <Button
+            variant="contained"
+            startIcon={<AddBoxSharpIcon />}
+            onClick={addNewJsonToTemplate}
+          >
+            Add New Form
+          </Button>
+        )}
         <Button
           variant="contained"
           color="secondary"
@@ -151,7 +159,7 @@ const LayoutSidebar = (props) => {
           variant="contained"
           color="success"
           startIcon={<SaveSharpIcon />}
-          onClick={saveDataToLocal}
+          onClick={saveDataToLocalFolder}
         >
           Save Form
         </Button>

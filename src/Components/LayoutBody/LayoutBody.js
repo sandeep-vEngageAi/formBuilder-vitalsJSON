@@ -13,9 +13,10 @@ import CheckBox from "../UI/CheckBox/CheckBox";
 import masterJson from "../../Data/master.json";
 import BotUtterances from "./BotUtterance/BotUtterances";
 import { useDispatch,useSelector } from "react-redux";
-import { showNotificationWithMessage } from "../../store/actions";
+import { showNotificationWithMessage,hasFileUpdated } from "../../store/actions";
 const LayoutBody = (props) => {
   const selectedFileDetails=useSelector(state=>state.reducer.fileDetails);
+  const fileUpdated =useSelector(state=>state.reducer.fileUpdated);
   const dispatch = useDispatch();
   const [jsonForm, setJsonForm] = useState({});
   const [visibility, setVisibility] = useState(false);
@@ -37,6 +38,18 @@ const LayoutBody = (props) => {
     createForm(props.jsonObject);
   }, [props.currentSelectedJsonIndex, props.jsonObject]);
   const updatejsonObjectFields = (value, identifier) => {
+    if(props.currentSelectedJsonIndex <0){
+      dispatch(showNotificationWithMessage({
+        variant:"warning",
+        message:"Please Select JSON"
+      }))
+      return;
+    }
+    if(props.currentSelectedJsonIndex > -1){
+      if(!fileUpdated){
+        dispatch(hasFileUpdated(true));
+      }
+    }
     if (identifier == "type") {
       value = value?.["type"];
     } else if (identifier == "clinical_entity") {
@@ -148,6 +161,7 @@ const LayoutBody = (props) => {
           message: "Data Saved!",
         })
       );
+      dispatch(hasFileUpdated(false));
     } catch (err) {
       dispatch(
         showNotificationWithMessage({
@@ -156,6 +170,7 @@ const LayoutBody = (props) => {
         })
       );
     }
+    
   };
   return (
     <div className="layoutBody__container">

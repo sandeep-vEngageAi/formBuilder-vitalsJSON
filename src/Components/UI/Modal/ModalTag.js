@@ -39,7 +39,7 @@ export default function TransitionsModal(props) {
           <Box sx={style}>
          
             <div className="modal__container">
-              <div className="modal__header">Data Deletion</div>
+              <div className="modal__header">{props.modalHeader ? props.modalHeader: "Data Deletion"}</div>
               <div className="modal__body">
                 {props.modalMessage
                   ? props.modalMessage

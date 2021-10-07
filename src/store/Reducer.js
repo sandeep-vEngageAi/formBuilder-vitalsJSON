@@ -3,12 +3,14 @@ import {
   VITALS_DATA,
   FILE_DETAILS,
   RESET_DETAILS,
+  HAS_FILE_UPDATED
 } from "./actionTypes";
 
 const initialState = {
   notification: null,
   vitalsData: "",
   fileDetails: {},
+  fileUpdated: false,
 };
 
 const Reducer = (state = initialState, action) => {
@@ -28,6 +30,11 @@ const Reducer = (state = initialState, action) => {
       return {
         ...state,
         fileDetails: action.fileDetails,
+      };
+    case HAS_FILE_UPDATED:
+      return {
+        ...state,
+        fileUpdated: action.status,
       };
     case RESET_DETAILS:
       return {

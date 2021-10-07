@@ -1,0 +1,128 @@
+[{
+                    
+    "question_id":{
+        "field_type":"text",
+        "data_source":"user_input",
+        "data_value":""
+    },
+    "type": {
+        "field_type":"Dropdown",
+        "data_source":"list",
+        "data_value":["ELICIT_FROM_PATIENT","DEFAULT"]
+    }, 
+    
+    "delay":{
+        "field_type":"int",
+        "data_source":"user_input",
+        "data_value":""
+    }, 
+    "repeat":{
+        "field_type":"int",
+        "data_source":"user_input",
+        "data_value":""
+    }, 
+    "repeat_times":{
+        "field_type":"int",
+        "data_source":"user_input",
+        "data_value":""
+    },
+    "fallback":{
+        "field_type":"text",
+        "data_source":"user_input",
+        "data_value":""
+    },
+    "symptom_logger":{
+        "field_type":"dropdown",
+        "data_source":"api",
+        "data_value":"https://pd-sandbox.vengage/pd-backend/api/v1/get-sns-entity"
+    },
+    "bot_utterances":{
+        "field_type":"text",
+        "data_source":"user_input",
+        "data_value":""
+    },
+    "fallback_response":{
+        "field_type":"text",
+        "data_source":"user_input",
+        "data_value":""
+    },
+​
+    "skip_response":{
+        "field_type":"dropdown",
+        "data_source":"list",
+        "data_value":"['True','False']"
+    },
+    
+    "symptom":{
+        "field_type":"dropdown",
+        "data_source":"api",
+        "data_value":"https://pd-sandbox.vengage/pd-backend/api/v1/get-sns-entity"
+    },
+    "value":{
+        "field_type":"dropdown",
+        "data_source":"api",
+        "data_value":"https://pd-sandbox.vengage/pd-backend/api/v1/get-vitals-list"
+    },
+​
+    "symptom_value": {
+        "field_type":"dropdown",
+        "data_source":"list",
+        "data_value":"['measure','onset','character']"
+    }, 
+​
+    "query_response":{
+        "field_type":"text",
+        "data_source":"user_input",
+        "data_value":""
+    },
+    "query_media":{
+        "field_type":"text",
+        "data_source":"user_input",
+        "data_value":""
+    },
+    "query_fallback":{
+        "field_type":"text",
+        "data_source":"user_input",
+        "data_value":""
+    },
+    "media":{
+        "field_type":"text",
+        "data_source":"user_input",
+        "data_value":""
+    },
+    "is_clinical_entity":{
+        "field_type":"dropdown",
+        "data_source":"list",
+        "data_value":"['True','False']"
+    },
+    "clinical_entity":{
+        "field_type":"dropdown",
+        "data_source":"api",
+        "data_value":"api/v1/get-clinical-entity"
+    },
+    "clinical_entity_id":{
+        "field_type":"linkedtext",
+        "link_to":"clinical_entity",
+        "data_source":"api",
+        "data_value":""
+    },
+    "measure_type":{
+        "field_type":"dropdown",
+        "data_source":"list",
+        "data_value":"['NUMBER_SCALE','THREE_POINT_SCALE','BINARY']"
+    },
+    "check_intent":{
+        "field_type":"dropdown",
+        "data_source":"list",
+        "data_value":"['TRUE','FALSE']"
+    },
+    "expectedresponse":{
+        "field_type":"table",
+        "data_source":"column",
+        "data_value":"['answer_type','match_type',''value']"
+    },
+    "action":{
+        "Act on basis of expected response"
+    }
+    
+}]

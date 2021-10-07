@@ -1,0 +1,19 @@
+@mixin display-flex {
+  display: flex;
+  align-items: center;
+}
+.botUtterance__container {
+  width: 100%;
+  .botUtterance__adder {
+    @include display-flex();
+    .botUtterance__addIcon{
+      margin-top: 15px;
+    }
+  }
+  .botUtterance__items {
+    width: 100%;
+    margin-top: 10px;
+    max-height: 10vh;
+    overflow-y: scroll;
+  }
+}

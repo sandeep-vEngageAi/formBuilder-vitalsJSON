@@ -1,0 +1,19 @@
+@mixin display-flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin: 5px 3px;
+}
+.expectedResponses__container {
+  .expectedResponses__texts {
+    @include display-flex();
+    .expectedResponses__icon {
+      margin-top: 15px;
+    }
+  }
+  .expectedResponses__addedItems {
+    margin-top: 20px;
+    max-height: 16vh;
+    overflow-y: scroll;
+  }
+}

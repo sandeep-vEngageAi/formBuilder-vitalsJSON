@@ -1,0 +1,20 @@
+.layoutSidebarJsonDropdown__container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  padding-top: 20px;
+  background-color: var(--secondary-color);
+  .layoutSidebarJsonDropdown__text {
+    font-weight: 600;
+  }
+  .layoutSidebarJsonDropdown__SearchBox {
+    .layoutSidebarJson__image {
+        width: 300px;
+        height: 100px;
+        filter: drop-shadow(8px 8px 10px rgb(15, 141, 199)) grayscale(70%) ;
+
+        }
+  }
+}

@@ -1,0 +1,24 @@
+.layout__content {
+  height: 100%;
+  width: 100%;
+  // box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
+  border-radius: 10px;
+  background-color: var(--base-background);
+  display: grid;
+  grid-template-columns: 20% auto;
+  grid-template-rows: 6% auto;
+  grid-template-areas:
+    "layoutHeader layoutHeader"
+    "layoutSidebar layoutBody";
+
+ .layout__navbar {
+    grid-area: layoutHeader;
+  }
+  .layout__sidebar {
+    grid-area: layoutSidebar;
+  }
+  .layout__body {
+    grid-area: layoutBody;
+  }
+}
+

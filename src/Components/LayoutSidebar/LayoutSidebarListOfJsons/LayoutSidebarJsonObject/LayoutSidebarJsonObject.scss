@@ -1,0 +1,15 @@
+.layoutSidebarJsonObject__container{
+    display: flex;
+    align-items: center;
+    .layoutSidebarJsonObject__card{
+        width: 80%;
+        padding: 5px 5px;
+    }
+    .layoutSidebarJsonObject__icons{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 10%;
+        padding:0px 5px;
+    }
+}

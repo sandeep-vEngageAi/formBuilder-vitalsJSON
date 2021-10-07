@@ -1,0 +1,73 @@
+@mixin fonts {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 22px;
+  /* identical to box height */
+  color: #000000;
+  margin-bottom: 2px;
+}
+
+body {
+  height: 100vh;
+  width: 100vw;
+  box-sizing: border-box;
+}
+* {
+  box-sizing: border-box;
+}
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey;
+  border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #1a76d2;
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #b7ec9e;
+}
+
+:root {
+  margin: 0px;
+  --base-background: white;
+  --active-color: #eaeef3;
+  --secondary-color: #fafbfc;
+  --box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+  --primary-color: #001e3c;
+}
+
+.app__container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+}
+
+.default-font {
+  @include fonts;
+}
+
+.app__backgroundImage {
+  position: absolute;
+  width: 40vw;
+  height: 40vh;
+  margin: 10px 0px 0px 10%;
+  padding: 0px;
+  top: auto;
+  right: auto;
+  z-index: 0;
+  filter: drop-shadow(8px 8px 10px rgb(195, 223, 236)) opacity(0.05);
+}

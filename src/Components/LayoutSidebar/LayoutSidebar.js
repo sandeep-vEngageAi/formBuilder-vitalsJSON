@@ -7,7 +7,6 @@ import VisibilitySharpIcon from "@mui/icons-material/VisibilitySharp";
 import AddBoxSharpIcon from "@mui/icons-material/AddBoxSharp";
 import SaveSharpIcon from "@mui/icons-material/SaveSharp";
 import PreviewPopup from "../UI/PreviewComponent/PreviewPopup";
-import { TextareaAutosize } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import {
   showNotificationWithMessage,
@@ -71,7 +70,6 @@ const LayoutSidebar = (props) => {
     setFileHandler(fileHandle);
 
     const file = await fileHandle.getFile();
-    console.log("FILE HANDLER: ", fileHandle.getFile());
     dispatch(setFileDetails(file));
 
     // contents of  newly created file
@@ -151,7 +149,7 @@ const LayoutSidebar = (props) => {
           variant="contained"
           color="secondary"
           startIcon={<VisibilitySharpIcon />}
-          onClick={() => setVisibility(TextareaAutosize)}
+          onClick={() => setVisibility(true)}
         >
           Complete Form Preview
         </Button>

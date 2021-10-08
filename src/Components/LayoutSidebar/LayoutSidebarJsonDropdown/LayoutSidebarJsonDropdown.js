@@ -11,7 +11,7 @@ const LayoutSidebarJsonDropdown = (props) => {
   const dispatch = useDispatch();
 
   const getFileContent = async (file) => {
-    const contents = await file.text();
+    const contents = await file.text(); 
 
     try {
       let jsonContent = JSON.parse(contents);
@@ -45,24 +45,42 @@ const LayoutSidebarJsonDropdown = (props) => {
   };
 
   // getFileContent is a function defined above
+  // call this function when picking file on clicking
   const getFileAccess = async (getFileContent) => {
     // fileHandle
     const [fileHandle] = await window.showOpenFilePicker();
     props.setFileHandler(fileHandle);
     const file = await fileHandle.getFile();
-
     await getFileContent(file);
   };
+  
+  // getting file on droping item
   const onDrop = async (e, getFileContent) => {
     e.preventDefault();
     e.stopPropagation();
-    const file = e.dataTransfer.files[0];
-    await getFileContent(file);
+    
+    // Process all of the items.
+    for (const item of e.dataTransfer.items) {
+      // kind will be 'file' for file/directory entries.
+      if (item.kind === 'file') {
+        // const entry = await item.getAsFileSystemHandle();
+        const entry = await e.dataTransfer.items[0].getAsFileSystemHandle();
+        if (entry.kind === 'file') {
+          const file = await entry.getFile();
+          props.setFileHandler(entry);
+          // run code for if entry is a file
+          await getFileContent(file); 
+
+      } else if (entry.kind === 'directory') {
+        // run code for is entry is a directory
+      }
+    }
+  }
   };
   return (
     <div className="layoutSidebarJsonDropdown__container">
       <div className="layoutSidebarJsonDropdown__text">
-        Please Select Template
+        Select or Drop File Here 🙂
       </div>
       <div
         className="layoutSidebarJsonDropdown__SearchBox"

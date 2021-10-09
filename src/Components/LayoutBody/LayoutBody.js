@@ -12,11 +12,14 @@ import PreviewPopup from "../UI/PreviewComponent/PreviewPopup";
 import CheckBox from "../UI/CheckBox/CheckBox";
 import masterJson from "../../Data/master.json";
 import BotUtterances from "./BotUtterance/BotUtterances";
-import { useDispatch,useSelector } from "react-redux";
-import { showNotificationWithMessage,hasFileUpdated } from "../../store/actions";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  showNotificationWithMessage,
+  hasFileUpdated,
+} from "../../store/actions";
 const LayoutBody = (props) => {
-  const selectedFileDetails=useSelector(state=>state.reducer.fileDetails);
-  const fileUpdated =useSelector(state=>state.reducer.fileUpdated);
+  const selectedFileDetails = useSelector((state) => state.reducer.fileDetails);
+  const fileUpdated = useSelector((state) => state.reducer.fileUpdated);
   const dispatch = useDispatch();
   const [jsonForm, setJsonForm] = useState({});
   const [visibility, setVisibility] = useState(false);
@@ -38,15 +41,17 @@ const LayoutBody = (props) => {
     createForm(props.jsonObject);
   }, [props.currentSelectedJsonIndex, props.jsonObject]);
   const updatejsonObjectFields = (value, identifier) => {
-    if(props.currentSelectedJsonIndex <0){
-      dispatch(showNotificationWithMessage({
-        variant:"warning",
-        message:"Please Select JSON"
-      }))
+    if (props.currentSelectedJsonIndex < 0) {
+      dispatch(
+        showNotificationWithMessage({
+          variant: "warning",
+          message: "Please Select JSON",
+        })
+      );
       return;
     }
-    if(props.currentSelectedJsonIndex > -1){
-      if(!fileUpdated){
+    if (props.currentSelectedJsonIndex > -1) {
+      if (!fileUpdated) {
         dispatch(hasFileUpdated(true));
       }
     }
@@ -170,11 +175,14 @@ const LayoutBody = (props) => {
         })
       );
     }
-    
   };
   return (
     <div className="layoutBody__container">
-      <div className="layoutBody__header">{(selectedFileDetails && selectedFileDetails?.name) ? selectedFileDetails?.name :"TemplateJSON"}</div>
+      <div className="layoutBody__header">
+        {selectedFileDetails && selectedFileDetails?.name
+          ? selectedFileDetails?.name
+          : "TemplateJSON"}
+      </div>
       <div className="layoutBody__columns">
         <div className="layoutBody__column1">
           <div className="layoutBody__column1Row1">
@@ -362,13 +370,15 @@ const LayoutBody = (props) => {
                 value={jsonForm["skip_response"]}
               />
             </div>
-            <CheckBox
-              displayName="Symptom Logger"
-              height="20px"
-              name="symptom_logger"
-              setValue={updatejsonObjectFields}
-              value={jsonForm["symptom_logger"]}
-            />
+            <div className="layoutBody__symptomLogger">
+              <CheckBox
+                displayName="Symptom Logger"
+                height="20px"
+                name="symptom_logger"
+                setValue={updatejsonObjectFields}
+                value={jsonForm["symptom_logger"]}
+              />
+            </div>
           </div>
           <div className="layoutBody__column2Row5">
             <InputTag

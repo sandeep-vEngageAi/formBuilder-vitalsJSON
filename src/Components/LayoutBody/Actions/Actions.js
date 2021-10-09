@@ -56,8 +56,8 @@ const Actions = (props) => {
         props.setValue(tempActionList, props.name);
         dispatch(
           showNotificationWithMessage({
-            variant: "success",
-            message: "Action added to the list",
+            variant: "info",
+            message: "Action edited",
           })
         );
       }
@@ -65,7 +65,7 @@ const Actions = (props) => {
       dispatch(
         showNotificationWithMessage({
           variant: "error",
-          message: "Can't add string to ActionList",
+          message: "Please update with valid JSON",
         })
       );
     }

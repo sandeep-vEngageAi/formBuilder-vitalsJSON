@@ -36,6 +36,10 @@ const BotUtterances = (props) => {
     tempBotUtteranceList[index] = value;
     setBotUtteranceList((prev) => [...tempBotUtteranceList]);
     props.setValue(tempBotUtteranceList,props.name)
+    dispatch(showNotificationWithMessage({
+      variant:"info",
+      message:"Bot utterance edited."
+    }))
   };
   const deleteBotUtterance = (index) => {
     let tempBotUtteranceList = [...botUtteranceList];

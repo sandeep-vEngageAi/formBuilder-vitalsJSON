@@ -10,10 +10,10 @@ export default function ControlledCheckbox(props) {
     props.setValue(valueToBeChecked, props.name);
   };
   useEffect(() => {
-    if (props.value == false) {
-      setChecked(true);
-    } else {
+    if (props.value === "") {
       setChecked(false);
+    } else if(props.value===false) {
+      setChecked(true);
     }
   }, [props.value]);
 

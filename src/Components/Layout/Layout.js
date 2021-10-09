@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import LayoutNavbar from "../LayoutNavbar/LayoutNavbar";
 import LayoutSidebar from "../LayoutSidebar/LayoutSidebar";
 import LayoutBody from "../LayoutBody/LayoutBody";
-import masterJson from "../../Data/master.json";
 import { useSelector } from "react-redux";
 import "./Layout.scss";
 import { showNotificationWithMessage } from "../../store/actions";
@@ -33,7 +32,7 @@ const Layout = (props) => {
 
   const addNewJsonObject = () => {
     let tempTemplateData = [...templateData];
-    tempTemplateData.push(masterJson)
+    tempTemplateData.push({})
     setTemplateData((prev) => [...tempTemplateData]);
   };
 

@@ -16,5 +16,11 @@
         flex-direction: column;
         align-items: center;    
         justify-content: space-evenly;
+        .layoutSidebar__createNewFileButton{
+            position:absolute;
+            top:5px;
+            width: 14%;
+            left: 100px;
+        }
     }
 }

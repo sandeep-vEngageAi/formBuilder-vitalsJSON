@@ -4,6 +4,7 @@ import {
   FILE_DETAILS,
   RESET_DETAILS,
   HAS_FILE_UPDATED,
+  SOME_FORMS_EMPTY
 } from "./actionTypes";
 
 export const showNotificationWithMessage = (status) => {
@@ -39,3 +40,10 @@ export const hasFileUpdated = (status) => {
     status: status,
   };
 };
+
+export const checkIfSomeFormsEmpty = (status)=>{
+  return{
+    type:SOME_FORMS_EMPTY,
+    status:status,
+  }
+}

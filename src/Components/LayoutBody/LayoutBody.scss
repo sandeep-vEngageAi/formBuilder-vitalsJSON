@@ -40,7 +40,7 @@
         display: flex;
         justify-content: flex-start;
         .layoutBody__columnItem1 {
-          margin-right: 10px;
+          margin-right: 20px;
         }
       }
     .layoutBody__column1Row2,
@@ -69,6 +69,9 @@
     {
       display: flex;
       align-items: center;
+      .layoutBody__symptomLogger{
+        margin-left: 40px;
+      }
     }
     .layoutBody__column2Row4 {
       display: flex;

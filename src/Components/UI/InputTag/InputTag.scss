@@ -1,0 +1,7 @@
+
+
+.inputTag__outlinedInput{
+    &:disabled{
+        cursor: not-allowed !important;
+    }
+}

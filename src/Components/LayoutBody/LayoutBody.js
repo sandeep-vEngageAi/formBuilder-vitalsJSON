@@ -181,7 +181,7 @@ const LayoutBody = (props) => {
       <div className="layoutBody__header">
         {selectedFileDetails && selectedFileDetails?.name
           ? selectedFileDetails?.name
-          : "TemplateJSON"}
+          : "Selected File Name Displays Here!!📛"}
       </div>
       <div className="layoutBody__columns">
         <div className="layoutBody__column1">

@@ -51,8 +51,8 @@ function App() {
     }
   };
   useEffect(() => {
-    showOnlineMessage(navigator.onLine);
     dispatch(resetDetails())
+    showOnlineMessage(navigator.onLine);
     setShowLayout(true);
   }, []);
   return (

@@ -180,7 +180,14 @@ const LayoutSidebar = (props) => {
           })
         );
       }
-    } catch (err) {}
+    } catch (err) {
+      dispatch(
+        showNotificationWithMessage({
+          variant: "error",
+          message: "File Saving Aborted",
+        })
+      );
+    }
   };
 
   useEffect(() => {

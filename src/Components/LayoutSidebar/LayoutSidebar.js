@@ -167,7 +167,8 @@ const LayoutSidebar = (props) => {
   // function for file save as:
   const saveFormAs = async () => {
     try {
-      let areSomeFormsEmpty = checkIfSomeFormsEmpty(props.templateData);
+      let areSomeFormsEmpty = functionToCheckEmptyJsons(props.templateData);
+
       if (areSomeFormsEmpty == false) {
         const newFileHandle = await getNewFileHandle();
         saveDataToLocalFolder(newFileHandle);

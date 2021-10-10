@@ -217,7 +217,7 @@ const LayoutSidebar = (props) => {
             }}
             onClick={() => createNewFile()}
           >
-            Create New File
+            Create New JSON File
           </Button>
         </div>
         {fileDetails.name && (

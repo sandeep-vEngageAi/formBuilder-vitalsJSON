@@ -1,6 +1,23 @@
-.layoutHeader__container{
-    .layoutHeader__image{
-        z-index: 2;
+.layoutNavbar__container {
+    display: flex;
+    align-items: center;
+    width: 100vw;
+    justify-content: space-between;
+  .layoutNavbar__logo {
+    filter: drop-shadow(8px 8px 10px rgb(195, 223, 236));
 
+    .layoutNavbar__image {
+      z-index: 2;
     }
+  }
+  .layoutNavbar__buttons{
+      display: flex;
+      justify-self: flex-end;
+      
+
+      .layoutNavbar__button{
+          margin:0px 5px;
+      }
+  }
+
 }

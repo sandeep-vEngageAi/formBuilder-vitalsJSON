@@ -20,7 +20,7 @@ export const getFetchFunction = async (urlEndpoint) => {
   }
   try {
     let valueFetched = fetch(
-      `${window["getConfig"].BACKEND_SERVICE_URL}/${urlEndpoint}`,
+      `${process.env.REACT_APP_BACKEND_SERVICE_URL}/${urlEndpoint}`,
       {
         method: "GET"
       }
@@ -56,7 +56,7 @@ export const useFetch = (urlEndpoint, fetchAgain = false) => {
       setIsLoading(true);
       try {
         const res = await fetch(
-          `${window["getConfig"].BACKEND_SERVICE_URL}/${urlEndpoint}`,
+          `${process.env.REACT_APP_BACKEND_SERVICE_URL}/${urlEndpoint}`,
           requestOptions
         )
           .then((response) => {
